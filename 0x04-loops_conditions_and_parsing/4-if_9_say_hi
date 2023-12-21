@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# script that prints "Holberton School" 10 times
+
+i=0
+
+while [ $i -lt 10 ]
+do
+	echo "Holberton School"
+	if [ $i = 8 ]
+	then
+		echo "Hi"
+	fi
+	
+	(( i+=1 ))
+done

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# script prints filenames in directory without beginning substring delimited by '-'
+
+for i in *
+do
+	echo "$i" | cut -d '-' -f2
+done
