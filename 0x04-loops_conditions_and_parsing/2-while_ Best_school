@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # script that prints "Holberton School" 10 times
 
-for _ in {0..9}
+i=0
+
+while [ $i -lt 10 ]
 do
-	echo "Holberton School"
+	echo "Best School"
+	(( i+=1 ))
 done

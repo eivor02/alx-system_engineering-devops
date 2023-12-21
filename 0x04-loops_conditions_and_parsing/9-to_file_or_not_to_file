@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 # prints information about holbertonschool file
 
-if [ -e "holbertonschool" ]
+if [ -e "Best" ]
 then
-	echo "holbertonschool file exists"
+	echo "Best file exists"
 
-	if [ -s "holbertonschool" ]
+	if [ -s "Best" ]
 	then
-		echo "holbertonschool file is not empty"
+		echo "Best file is not empty"
 	else
-		echo "holbertonschool file is empty"
+		echo "Best file is empty"
 	fi
 
-	if [ -f "holbertonschool" ]
+	if [ -f "Best" ]
 	then
-		echo "holbertonschool is a regular file"
+		echo "Best is a regular file"
 	fi
 
 else
-	echo "holbertonschool file does not exist"
+	echo "Best file does not exist"
 fi

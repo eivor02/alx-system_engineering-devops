@@ -5,7 +5,7 @@ i=0
 
 while [ $i -lt 10 ]
 do
-	echo "Holberton School"
+	echo "best School"
 	if [ $i = 8 ]
 	then
 		echo "Hi"

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# displays username, group id, and home dir of /etc/passwd file
+
+while read -r -e LINE
+do
+	usrname="${LINE%%:*}"
+	groupid="${LINE#*:*:}"
+	groupid="${groupid%%:*}"
+	homedir="${LINE#*:*:*:*:*:}"
+	homedir="${homedir%%:*}"
+
+	echo "$usrname:$groupid:$homedir"
+done < /etc/passwd
