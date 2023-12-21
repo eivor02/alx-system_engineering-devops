@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# prints information about holbertonschool file
+# prints information about Best file
 
 if [ -e "Best" ]
 then

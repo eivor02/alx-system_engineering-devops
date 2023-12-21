@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# script that prints "Holberton School" 10 times
+# script that prints "best School" 10 times
 
 for _ in {0..9}
 do
