@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# try to kill 7-highlander
+
+pkill -n -f 7-highlander

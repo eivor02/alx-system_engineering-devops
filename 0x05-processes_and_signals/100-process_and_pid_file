@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# displays "To infinity and beyond" forever
+
+trap 'echo "Y U no love me?!"' SIGINT
+trap 'echo "I hate the kill command"; sudo rm /var/run/holbertonscript.pid; kill -KILL $$' SIGTERM
+trap 'sudo rm /var/run/holbertonscript.pid; kill -KILL $$' SIGQUIT
+
+sudo touch /var/run/holbertonscript.pid
+sudo bash -c 'echo $$ > /var/run/holbertonscript.pid'
+
+i=1
+
+while [[ $i = 1 ]]; do
+	echo "To infinity and beyond"
+	sleep 2
+done

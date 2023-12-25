@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# displays line containing 'bash' in pid process display
+# shellcheck disable=SC2009
+
+ps -axu --forest | grep bash | cut -c1-64

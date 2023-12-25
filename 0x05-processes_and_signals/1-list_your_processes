@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# currently running processes with user-oriented format and hierarchy
+
+ps -aux --forest
