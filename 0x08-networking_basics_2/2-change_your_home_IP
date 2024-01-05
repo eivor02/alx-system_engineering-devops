@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# changes localhost to 127.0.0.2 and facebook.com to 8.8.8.8
+
+file_content=$(grep -v 127.0.0.1 /etc/hosts)
+
+echo "127.0.0.2 localhost" > /etc/hosts
+echo "$file_content" >> /etc/hosts
+echo "8.8.8.8 facebook.com" >> /etc/hosts
