@@ -1,5 +1,5 @@
 # creating a temporary file
-file { '/tmp/holberton':
+file { '/tmp/school':
   ensure  => 'present',
   mode    => '0744',
   owner   => 'www-data',
