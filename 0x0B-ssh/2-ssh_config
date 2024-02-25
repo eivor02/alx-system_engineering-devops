@@ -1,4 +1,4 @@
 Host *
-     IdentityFile ~/.ssh/holberton
+     IdentityFile ~/.ssh/school
      PasswordAuthentication no
      BatchMode yes
