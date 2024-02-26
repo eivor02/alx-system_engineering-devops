@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# installs and starts nginx with custom index page and redirect
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
+string='\\tlocation /redirect_me {\n\t\trewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}\n'
+sudo sed -i "38i$string" /etc/nginx/sites-available/default
+sudo /etc/init.d/nginx start

@@ -1,4 +1,3 @@
-Host *
 # ssh config file
 Host *
       PasswordAuthentication no
