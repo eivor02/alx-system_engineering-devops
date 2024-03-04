@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# installs and starts nginx with custom index page, redirect, and custom 404 page, http header
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
+string='location /redirect_me {\nrewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n}\n'
+sudo sed -i "/# Only/ i $string" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sudo sed -i "s/#error_page/error_page" /etc/nginx/sites-available/default
+string="add_header X-Served-By $(cat /etc/hostname);"
+sudo sed -i "/index.htm;/ a $string" /etc/nginx/sites-enabled/default
+sudo /etc/init.d/nginx restart

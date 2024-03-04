@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script to fix nginx not listening on correct port
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
