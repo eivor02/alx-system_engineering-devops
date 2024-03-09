@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# displays information about the records of a domain
+
+display_record () {
+    sub_name=$(echo "$1" | cut -d'.' -f1)
+    record_type=$(dig "$1" | grep -A1 'ANSWER SECTION:' | grep 'IN' | awk '{print $4}')
+    ip_address=$(dig "$1" | grep -A1 'ANSWER SECTION:' | grep 'IN' | awk '{print $5}')
+    echo "The subdomain $sub_name is a $record_type record and points to $ip_address" 
+}
+
+if [ "$#" -eq 2 ]
+then
+    display_record "$2.$1"
+else
+    display_record "www.$1"
+    display_record "lb-01.$1"
+    display_record "web-01.$1"
+    display_record "web-02.$1"
+fi
