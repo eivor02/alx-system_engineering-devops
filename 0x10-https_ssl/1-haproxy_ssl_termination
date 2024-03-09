@@ -46,5 +46,5 @@ frontend www-https
 
 backend www-backend
    redirect scheme https if !{ ssl_fc }
-   server 324-web-01 35.174.200.77:80 check
-   server 324-web-02 54.237.104.54:80 check
+   server 461222-web-01	 35.174.200.77:80 check
+   server 461222-web-02	 54.237.104.54:80 check
