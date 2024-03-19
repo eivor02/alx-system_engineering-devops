@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#creates backup of sql database
+mysqldump -uroot --password="$1" -A --events > backup.sql
+tar czvf "$(date +%d-%m-%Y).tar.gz" backup.sql
