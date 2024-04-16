@@ -1,0 +1,13 @@
+# runs website on server
+description "starts guricorn app server"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+setuid ubuntu
+setgid www-data
+
+env PATH=/home/ubuntu/AirBnB_clone_v4/appenv/bin
+chdir /home/ubuntu/AirBnB_clone_v4
+exec gunicorn --workers 3 --bind 0.0.0.0:8003 -m 007 web_dynamic.2-hbnb

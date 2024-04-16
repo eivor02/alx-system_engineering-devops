@@ -1,0 +1,32 @@
+# redirects /airbnb-onepage route to the result of 0-welcome_gunicorn-upstart_config
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+	add_header X-Served-By $hostname;
+
+	root /usr/share/nginx/html;
+	index index.html index.htm;
+
+	server_name localhost;
+
+        location /redirect_me {
+                return 301 https://youtu.be/dQw4w9WgXcQ;
+        }
+
+        error_page 404 /404.html;
+
+        location = /404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        location / {
+		try_files $uri $uri/ =404;
+	}
+
+        location /airbnb-onepage {
+                rewrite ^/airbnb-onepage(.*)$ $1 break;
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8000;
+        }
+}
