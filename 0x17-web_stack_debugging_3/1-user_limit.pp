@@ -1,5 +1,5 @@
 
-# Enable the user holberton to login and open files without error.
+# Enable the user holberton school to login and open files without error.
 
 # Increase hard file limit for Holberton user.
 exec { 'increase-hard-file-limit-for-holberton-user':
