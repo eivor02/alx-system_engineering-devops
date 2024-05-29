@@ -1,1 +1,0 @@
-Webstack monitoring using SumoLogic
