@@ -1,45 +1,51 @@
+
 #!/usr/bin/python3
-'''
-prints keyword count for titles of hot posts in a subreddit
-'''
+""" Module for a function that queries the Reddit API recursively."""
+
 
 import requests
 
 
-def count_words(subreddit, word_list, after='', keywords=None):
-    '''
-    prints keyword count for titles of hot posts in a subreddit
-    '''
-    headers = {'user-agent': 'my-app/0.0.1'}
+def count_words(subreddit, word_list, after='', word_dict={}):
+    """ A function that queries the Reddit API parses the title of
+    all hot articles, and prints a sorted count of given keywords
+    (case-insensitive, delimited by spaces.
+    Javascript should count as javascript, but java should not).
+    If no posts match or the subreddit is invalid, it prints nothing.
+    """
 
-    r = requests.get('https://www.reddit.com/r/{}/hot/.json?after={}'
-                     .format(subreddit, after),
-                     headers=headers)
+    if not word_dict:
+        for word in word_list:
+            if word.lower() not in word_dict:
+                word_dict[word.lower()] = 0
 
-    if keywords is None:
-        keywords = {key: 0 for key in word_list}
+    if after is None:
+        wordict = sorted(word_dict.items(), key=lambda x: (-x[1], x[0]))
+        for word in wordict:
+            if word[1]:
+                print('{}: {}'.format(word[0], word[1]))
+        return None
+
+    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+    header = {'user-agent': 'redquery'}
+    parameters = {'limit': 100, 'after': after}
+    response = requests.get(url, headers=header, params=parameters,
+                            allow_redirects=False)
+
+    if response.status_code != 200:
+        return None
 
     try:
-        if r.json()['data']['dist'] == 0:
-            return None
-        for post in r.json()['data']['children']:
-            title = post['data']['title'].lower()
-            for word in word_list:
-                keywords[word] += title.count(word)
-    except (KeyError, IndexError):
-        if after == '':
-            return None
+        hot = response.json()['data']['children']
+        aft = response.json()['data']['after']
+        for post in hot:
+            title = post['data']['title']
+            lower = [word.lower() for word in title.split(' ')]
 
-    if (r.json()['data']['after'] is None):
-        return keywords
+            for word in word_dict.keys():
+                word_dict[word] += lower.count(word)
 
-    keywords = count_words(subreddit, word_list,
-                           r.json()['data']['after'], keywords)
+    except Exception:
+        return None
 
-    if after == '':
-        for key, value in sorted(keywords.items(),
-                                 key=lambda tup: tup[1], reverse=True):
-            if (value != 0):
-                print('{}: {}'.format(key, value))
-
-    return(keywords)
+    count_words(subreddit, word_list, aft, word_dict)
